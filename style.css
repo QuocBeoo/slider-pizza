@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+body {
+    margin: 0;
+    font-family: monospace;
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to right, #2b2f3a, #0d0e12);
+    overflow: hidden;
+}
+.slider::before {
+    position: absolute;
+    width: 50%;
+    height: 100vh;
+    content: "";
+    top: 0;
+    left: 0;
+    background-color: #e88735;
+}
+.title {
+    position: absolute;
+    top: 10%;
+    left: -20vh;
+    text-align: right;
+    color: #fff;
+    font-size: 150px;
+    width: 40%;
+    font-family: "Pacifico", cursive;
+    text-shadow: 3px 5px 0px #478860;
+    line-height: 0.9em;
+    transform: rotate(-5deg);
+}
+.images {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    --rotate: 0deg;
+    transform: translate(-50%, 50%) rotate(var(--rotate));
+    width: 1300px;
+    height: 1300px;
+    border-radius: 50%;
+    transition: transform 0.5s ease-in-out;
+    outline: 1px dashed #fff5;
+    outline-offset: -100px;
+}
+.images .item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    rotate: calc(60deg * var(--i));
+}
+.images .item img {
+    height: 420px;
+}
+
+.content {
+    color: #fff;
+    position: absolute;
+    top: 10%;
+    right: 20vh;
+    text-align: justify;
+    width: 350px;
+}
+.content h1 {
+    color: #e88735;
+    font-size: 2rem;
+}
+.content button {
+    margin-top: 30px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    background-color: #e88735;
+    color: #fff;
+    border: none;
+    float: right;
+}
+.content .item {
+    display: none;
+}
+.content .item.active {
+    display: block;
+}
+@keyframes showContent {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+.content .item.active h1 {
+    opacity: 0;
+    animation: showContent 0.5s ease-in-out 1 forwards;
+}
+.content .item.active .des {
+    opacity: 0;
+    animation: showContent 0.5s 0.3s ease-in-out 1 forwards;
+}
+.content .item.active button {
+    opacity: 0;
+    animation: showContent 0.5s 0.6s ease-in-out 1 forwards;
+}
+
+#prev,
+#next {
+    position: absolute;
+    border: none;
+    top: 50%;
+    left: 5vh;
+    font-size: 100px;
+    font-family: cursive;
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+    opacity: 0.3;
+    cursor: pointer;
+}
+#next {
+    left: unset;
+    right: 5vh;
+}
+#next:hover,
+#prev:hover {
+    opacity: 1;
+}
+@media (max-width: 1440px) {
+    .title {
+        left: 0;
+        font-size: 80px;
+    }
+    .content {
+        left: auto;
+        right: 10vh;
+    }
+}
+@media (max-width: 1536px) {
+    .images {
+        width: 1000px;
+        height: 1000px;
+    }
+    .images .item img {
+        height: 300px;
+    }
+}
+@media (max-width: 1024px) {
+    .title {
+        left: -5vh;
+    }
+    .content {
+        left: auto;
+        right: 10vh;
+        width: 250px;
+    }
+    .images {
+        width: 800px;
+        height: 800px;
+    }
+    .images .item img {
+        height: 250px;
+    }
+}
+@media (max-width: 768px) {
+    .title {
+        width: max-content;
+        left: 15%;
+        transform: translate(-15%, 0) rotate(-5deg);
+    }
+    .content {
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+    }
+    .content h1 {
+        color: #fff;
+        text-shadow: 3px 5px 0px #1c5222;
+        font-size: 1.5rem;
+    }
+    .content .item.active .des {
+        font-size: 12px;
+    }
+    #prev,
+    #next {
+        font-size: 50px;
+    }
+    .images {
+        width: 600px;
+        height: 600px;
+    }
+    .images .item img {
+        height: 180px;
+    }
+    #prev,
+    #next {
+        left: 10px;
+    }
+    #next {
+        left: unset;
+        right: 10px;
+    }
+    .content button {
+        margin-top: 15px;
+    }
+}
+@media (max-width: 640px) {
+    .title {
+        font-size: 50px;
+    }
+    .des {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+}
